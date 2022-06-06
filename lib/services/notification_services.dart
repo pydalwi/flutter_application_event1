@@ -112,9 +112,4 @@ class NotifyHelper {
     // );
     Get.dialog(Text("Welcome to flutter"));
   }
-
-  static void displayNotification(
-      {required String Title, required String Body}) {}
-
-  static void scheduleNotification() {}
 }

@@ -1,11 +1,10 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_event1/services/notification_services.dart';
+import 'package:flutter_application_event1/ui/theme.dart';
 import 'package:get/get.dart';
 
 import 'package:intl/intl.dart';
-
-
 
 import '../services/theme_services.dart';
 
@@ -34,10 +33,21 @@ class _HomePageState extends State<HomePage> {
           children: [
             Row(
               children: [
-                Column(
-                  children: [
-                    Text(DateFormat.yMMMMd().format(DateTime.now())),
-                  ],
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        DateFormat.yMMMMd().format(DateTime.now()),
+                        style: subHeadingStyle,
+                      ),
+                      Text(
+                        "Today",
+                        style: headingStyle,
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -52,13 +62,13 @@ class _HomePageState extends State<HomePage> {
       leading: GestureDetector(
         onTap: () {
           ThemeService().switchTheme();
-
-          NotifyHelper.displayNotification(
-              Title: "theme changed",
-              Body: Get.isDarkMode
+          notifyHelper.displayNotification(
+              title: "theme changed",
+              body: Get.isDarkMode
                   ? "activated light theme"
                   : "activated dark theme");
-          NotifyHelper.scheduleNotification();
+
+          notifyHelper.scheduleNotification();
 
           notifyHelper.displayNotification(
               title: "Theme Changed",
@@ -67,7 +77,6 @@ class _HomePageState extends State<HomePage> {
                   : "Activeted Dark Theme");
 
           notifyHelper.scheduledNotification();
-
         },
         child: Icon(
             Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round,
