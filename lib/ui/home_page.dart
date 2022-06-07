@@ -2,6 +2,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_event1/services/notification_services.dart';
 import 'package:flutter_application_event1/ui/theme.dart';
+import 'package:flutter_application_event1/ui/widgets/button.dart';
 import 'package:get/get.dart';
 
 import 'package:intl/intl.dart';
@@ -28,31 +29,33 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        DateFormat.yMMMMd().format(DateTime.now()),
-                        style: subHeadingStyle,
-                      ),
-                      Text(
-                        "Today",
-                        style: headingStyle,
-                      )
-                    ],
-                  ),
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      DateFormat.yMMMMd().format(DateTime.now()),
+                      style: subHeadingStyle,
+                    ),
+                    Text(
+                      "Today",
+                      style: headingStyle,
+                    )
+                  ],
                 ),
-              ],
-            ),
-          ],
-        ));
+              ),
+              MyButton(label: "+ Add Task", onTap: () => null)
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   _appBar() {
