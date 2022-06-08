@@ -1,6 +1,7 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_event1/services/notification_services.dart';
+import 'package:flutter_application_event1/ui/add_task_bar.dart';
 import 'package:flutter_application_event1/ui/theme.dart';
 import 'package:flutter_application_event1/ui/widgets/button.dart';
 import 'package:flutter_application_event1/services/theme_services.dart';
@@ -33,34 +34,38 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           _addTaskBar(),
-          Container(
-            margin: const EdgeInsets.only(top: 20, left: 20),
-            child: DatePicker(DateTime.now(),
-                height: 100,
-                width: 80,
-                initialSelectedDate: DateTime.now(),
-                selectionColor: primaryclr,
-                selectedTextColor: Colors.white,
-                dateTextStyle: GoogleFonts.lato(
-                    textStyle: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey)),
-                dayTextStyle: GoogleFonts.lato(
-                    textStyle: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey)),
-                monthTextStyle: GoogleFonts.lato(
-                    textStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey)), onDateChange: (date) {
-              _selectedDate = date;
-            }),
-          )
+          _addDateBar(),
         ],
       ),
+    );
+  }
+
+  _addDateBar() {
+    return Container(
+      margin: const EdgeInsets.only(top: 20, left: 20),
+      child: DatePicker(DateTime.now(),
+          height: 100,
+          width: 80,
+          initialSelectedDate: DateTime.now(),
+          selectionColor: primaryclr,
+          selectedTextColor: Colors.white,
+          dateTextStyle: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey)),
+          dayTextStyle: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey)),
+          monthTextStyle: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey)), onDateChange: (date) {
+        _selectedDate = date;
+      }),
     );
   }
 
@@ -85,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          MyButton(label: "+ Add Task", onTap: () => null)
+          MyButton(label: "+ Add Task", onTap: () => Get.to(AddTaskPage()))
         ],
       ),
     );
