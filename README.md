@@ -1,6 +1,6 @@
 # flutter_application_event1
 
-A new Flutter project.
+A Big Flutter project.
 
 ## Getting Started
 
