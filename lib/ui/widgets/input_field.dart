@@ -39,6 +39,7 @@ class MyInputField extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextFormField(
+                          readOnly: widget == null ? false : true,
                           autofocus: false,
                           cursorColor: Get.isDarkMode
                               ? Colors.grey[100]
@@ -57,6 +58,7 @@ class MyInputField extends StatelessWidget {
                                       color: context.theme.backgroundColor,
                                       width: 0)))),
                     ),
+                    widget == null ? Container() : Container(child: widget),
                   ],
                 ))
           ],

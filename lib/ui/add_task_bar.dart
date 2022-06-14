@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_event1/ui/theme.dart';
 import 'package:flutter_application_event1/ui/widgets/input_field.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-class AddTaskPage extends StatelessWidget {
+class AddTaskPage extends StatefulWidget {
   const AddTaskPage({Key? key}) : super(key: key);
 
+  @override
+  State<AddTaskPage> createState() => _AddTaskPageState();
+}
+
+class _AddTaskPageState extends State<AddTaskPage> {
+  DateTime _selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +28,18 @@ class AddTaskPage extends StatelessWidget {
                   style: headingStyle,
                 ),
                 MyInputField(title: "title", hint: "Enter your title"),
+                MyInputField(title: "note", hint: "Enter your note"),
+                MyInputField(
+                  title: "Date",
+                  hint: DateFormat.yMd().format(_selectedDate),
+                  widget: IconButton(
+                    icon:
+                        Icon(Icons.calendar_today_outlined, color: Colors.grey),
+                    onPressed: () {
+                      print("Hi there");
+                    },
+                  ),
+                )
               ],
             ),
           ),
