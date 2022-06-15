@@ -13,6 +13,8 @@ class AddTaskPage extends StatefulWidget {
 
 class _AddTaskPageState extends State<AddTaskPage> {
   DateTime _selectedDate = DateTime.now();
+  String _endtime = "9.30 PM";
+  String _startTime = DateFormat("hh:mm a").format(DateTime.now()).toString();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,14 +35,49 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   title: "Date",
                   hint: DateFormat.yMd().format(_selectedDate),
                   widget: IconButton(
-                    icon:
-                        Icon(Icons.calendar_today_outlined, color: Colors.grey),
+                    icon: Icon(
+                      Icons.calendar_today_outlined,
+                      color: Colors.grey,
+                    ),
                     onPressed: () {
                       print("Hi there");
                       _getDateFromUser();
                     },
                   ),
-                )
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: MyInputField(
+                        title: "Start Date",
+                        hint: _startTime,
+                        widget: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.access_time_rounded,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Expanded(
+                      child: MyInputField(
+                        title: "End Date",
+                        hint: _endtime,
+                        widget: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.access_time_rounded,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -75,5 +112,28 @@ class _AddTaskPageState extends State<AddTaskPage> {
         initialDate: DateTime.now(),
         firstDate: DateTime(2015),
         lastDate: DateTime(2222));
+    if (_pickerDate != null) {
+      setState(() {
+        _selectedDate = _pickerDate;
+        print(_selectedDate);
+      });
+    } else {
+      print("it's null or something is wrong");
+    }
+  }
+
+  _getTimeFromUser() {
+    var pickedTime = _showTimePicker();
+  }
+
+  _showTimePicker() {
+    return showTimePicker(
+      initialEntryMode: TimePickerEntryMode.input,
+      context: context,
+      initialTime: TimeOfDay(
+        hour: 9,
+        minute: 10,
+      ),
+    );
   }
 }
