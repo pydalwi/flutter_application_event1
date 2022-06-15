@@ -37,6 +37,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                         Icon(Icons.calendar_today_outlined, color: Colors.grey),
                     onPressed: () {
                       print("Hi there");
+                      _getDateFromUser();
                     },
                   ),
                 )
@@ -66,5 +67,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
         ),
       ],
     );
+  }
+
+  _getDateFromUser() async {
+    DateTime? _pickerDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2222));
   }
 }
