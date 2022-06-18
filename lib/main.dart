@@ -20,16 +20,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: 'App Event',
-        debugShowCheckedModeBanner: false,
-        theme: Themes.light,
-        darkTheme: Themes.dark,
-        themeMode: ThemeService().theme,
-        home: HomePage(),
-        initialRoute: 'login',
-        routes: {
-          'login': (context) => const MyLogin(),
-          'register': (context) => const MyRegister(),
-        });
+      title: 'App Event',
+      debugShowCheckedModeBanner: false,
+      theme: Themes.light,
+      darkTheme: Themes.dark,
+      themeMode: ThemeService().theme,
+      home: HomePage(),
+      // initialRoute: 'login',
+      // routes: {
+      //   // 'login': (context) => const MyLogin(),
+      //   // 'register': (context) => const MyRegister(),
+      // }
+    );
   }
 }
