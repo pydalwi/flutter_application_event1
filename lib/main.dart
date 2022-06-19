@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_event1/db/db_helper.dart';
 import 'package:flutter_application_event1/login.dart';
 import 'package:flutter_application_event1/register.dart';
 import 'package:flutter_application_event1/services/theme_services.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_application_event1/register.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await DBHelper.initDb();
   await GetStorage.init();
   runApp(MyApp());
 }
