@@ -55,7 +55,9 @@ class _HomePageState extends State<HomePage> {
         return ListView.builder(
             itemCount: _taskController.taskList.length,
             itemBuilder: (_, index) {
-              print(_taskController.taskList.length);
+              Task task = _taskController.taskList[index];
+              //print(task.toJson());
+              if (task.repeat == 'Daily') setState(() {});
               return AnimationConfiguration.staggeredList(
                   position: index,
                   child: SlideAnimation(
@@ -64,10 +66,9 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       GestureDetector(
                           onTap: () {
-                            _showBottomSheet(
-                                context, _taskController.taskList[index]);
+                            _showBottomSheet(context, task);
                           },
-                          child: TaskTile(_taskController.taskList[index]))
+                          child: TaskTile(task))
                     ],
                   ))));
             });
@@ -99,6 +100,7 @@ class _HomePageState extends State<HomePage> {
                 : _bottomSheetButton(
                     label: "Task Completed",
                     onTap: () {
+                      _taskController.markTaskcompleted(task.id!);
                       Get.back();
                     },
                     clr: primaryclr,
@@ -108,7 +110,7 @@ class _HomePageState extends State<HomePage> {
               label: "Delete Task",
               onTap: () {
                 _taskController.delete(task);
-                _taskController.getTasks();
+
                 Get.back();
               },
               clr: Colors.red[300]!,
