@@ -1,3 +1,4 @@
+import 'package:flutter_application_event1/models/task.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -29,15 +30,19 @@ class NotifyHelper {
         onSelectNotification: selectNotification);
   }
 
-  displayNotification({required String title, required String body}) async {
+  Future<void> displayNotification(
+      {required String title, required String body}) async {
     print("doing test");
     var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
         'your channel id', 'your channel name',
         importance: Importance.max, priority: Priority.high);
+
     var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+
     var platformChannelSpecifics = new NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
+
     await flutterLocalNotificationsPlugin.show(
       0,
       title,
@@ -47,7 +52,7 @@ class NotifyHelper {
     );
   }
 
-  scheduledNotification() async {
+  scheduledNotification(int hour, int minutes, Task task) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
         0,
         'scheduled title',
