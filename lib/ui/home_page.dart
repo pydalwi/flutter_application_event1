@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     print("build method called");
     return Scaffold(
-      appBar: AppBar(),
+      appBar: _appBar(),
       backgroundColor: context.theme.backgroundColor,
       body: Column(
         children: [
