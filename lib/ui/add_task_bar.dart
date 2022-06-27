@@ -296,7 +296,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
   _getTimeFromUser({required bool isStarTime}) async {
     var pickedTime = await _showTimePicker();
-    String _formatedTime = pickedTime.fomat();
+    String _formatedTime = pickedTime.format(context);
     if (pickedTime == null) {
       print("Time canceld");
     } else if (isStarTime == true) {
